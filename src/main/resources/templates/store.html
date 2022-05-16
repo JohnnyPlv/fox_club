@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Store</title>
+</head>
+<header>
+    <ul>
+        <li><a th:href="@{/(name=${foxName})}">Information</a></li>
+        <!--    dynamic th:href /nutritionStore(name='value') -this sends the name to the method -->
+        <li><a th:href="@{/nutritionStore(name=${foxName})}">Nutrition store</a></a></li>
+    </ul>
+</header>
+<body>
+<form name="plan" method="post" th:action="@{/nutritionStore(name=${foxName})}">
+    <label for="food">Food</label>
+    <select name="food" id="food">
+        <option th:each="food : ${listOfFood}" th:text="${food.getType()}"></option>
+    </select>
+    <label for="drink">Drink</label>
+    <select  name="drink" id="drink">
+        <option th:each="drink : ${listOfDrink}" th:text="${drink.getType()}"></option>
+    </select>
+    <button type="submit">GO!</button>
+</form>
+</body>
+</html>

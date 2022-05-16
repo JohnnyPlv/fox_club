@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<header>
+    <header>
+        <ul>
+            <li><a th:href="@{/(name=${foxName})}">Information</a></li>
+            <!--    dynamic th:href /nutritionStore(name='value') -this sends the name to the method -->
+            <li><a th:href="@{/nutritionStore(name=${foxName})}">Nutrition store</a></a></li>
+            <li><a th:href="@{/trickCenter(name=${foxName})}">Trick center</a></a></li>
+        </ul>
+    </header>
+</header>
+<body>
+<form th:if="${activeFox.getTricks().size() != listOfTricks.size()}" name="plan" method="post" th:action="@{/trickCenter(name=${foxName})}">
+    <label for="trick">Food</label>
+    <select name="trick" id="trick">
+        <option  th:each="trick : ${listOfTricks}" th:unless="${activeFox.getTricks().contains(trick.getType())}" th:text="${trick.getType}"></option>
+    </select>
+    <button type="submit">Learn!</button>
+    <p th:text="${trickExist}"></p>
+</form>
+<p th:if="${activeFox.getTricks().size() == listOfTricks.size()}" th:text="'Fox knows all the tricks already!'"></p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div>
+    <h1>Welcome to Programmer Fox Club!</h1>
+    <p>Please provide a name, so you can associate it to your pet!</p>
+    <form class="search"
+          th:action="@{/login}"
+          method="post">
+        <label for="searchField">Name:</label>
+        <input type="text"
+               name="name"
+               id="searchField"
+               required/>
+        <!--        TODO    label for and input id se musi propojit a name v inputu je keyword -> parametr v Metode v controlleru-->
+        <button type="submit">OK!</button>
+        <p th:text="${noPet}"></p>
+    </form>
+</div>
+</body>
+</html>
